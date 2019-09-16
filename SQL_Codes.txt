@@ -1,0 +1,113 @@
+show databases;
+
+
+create database students;
+use students;
+create table student(ID int(3),sname varchar(20),course varchar(10));
+show tables; 
+describe student;
+alter table student add gender varchar(10);
+alter table student modify sname varchar(30);
+alter table student drop gender;
+drop table student;
+
+
+
+insert into student values (101,'Peter','BSIT');
+select * from student;
+delete from student where id=106;
+
+update student set gender='Male' where ID=101;
+
+
+alter table student
+add gender varchar(20);
+sh
+select sname,course,gender from student;
+
+select sname as 'Student Name',
+course as 'Course',
+gender as 'Gender'
+from student;
+
+select sname,course,allowance+500 from student;
+
+select * from student where course='BSIT';
+
+select * from student where sname in ('Peter','Jane');
+
+select * from student where sname='John' or sname='Ben' or sname='janes';
+
+select * from student where allowance>1000;
+
+select * from student where allowance between 1000 and 1800;
+
+select * from student where allowance>0;
+
+select * from student where allowance is null;
+
+select * from student where course='BSCS' and allowance <2000;
+
+select * from student where allowance is not null;
+
+select * from student where sname like 'J%';
+
+select * from student where sname like '%N';
+
+select * from student order by sname;
+
+select * from student order by allowance;
+
+select * from student order by allowance desc;
+
+select * from student order by allowance asc;
+
+
+select student.sname,student.course,courses.advise from student,courses;
+
+select student.sname,student.course,courses.advise from student,courses where student.course=courses.course;
+
+select student.sname,student.course,courses.advise from student,courses where student.course=courses.course and student.course='BSIT';
+
+
+select sum(allowance) from student;
+
+select avg(allowance) from student;
+
+select min(allowance) from student;
+
+select count(allowance) from student;
+
+select count(sname) from student;
+
+select course, sum(allowance) from student group by course;
+
+select course, sum(allowance) 
+from student 
+where allowance>=1000
+group by course;
+
+select course, sum(allowance) from student group by course having sum(allowance) > 1000;
+
+
+select course, sum(allowance)
+from student
+where sname not in ('Ben')
+group by course
+having sum(allowance) > 1000;
+
+
+select course, sum(allowance)
+from student
+where gender='male'se
+group by course
+having sum(allowance)>1000;
+
+create user 'scott' identified by '12345';
+
+grant all privileges on students to scott;
+
+flush privileges;
+
+
+
